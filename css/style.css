@@ -1,0 +1,254 @@
+
+nav{
+	background: rgba( 98, 101, 103 ,0.5);
+}
+.bus{
+	position: relative;
+	width:30%;
+	border: 2px solid #337AC0;
+}
+.button_cort{
+	position: relative;
+	left: 43%;
+}
+#lmesa{
+	position: relative;
+	left: 15%;
+}
+#lbar{
+	position: relative;
+	left: 15%;
+}
+#lter{
+	position: relative;
+	left: 14.5%;
+}
+#divmayor{
+	background:rgba(0,0,0,0.5);
+}
+
+
+#div_loc{
+	border: 2px solid black;
+	border-radius: 5px; 
+	margin:1px;
+	width:20%; 
+	height:105px; 
+	text-align:center;
+	font-size: 10px;
+}
+#div_loc_v{
+	border: 2px solid black;
+	border-radius: 5px; 
+	margin:1px;
+	width:30%; 
+	height:105px; 
+	text-align:center;
+	font-size: 10px;
+}
+#form_alimentos{
+	width: 80%;
+	margin: 0 auto;
+}
+#catego{
+	position: absolute;
+	right: 1.5em;
+	bottom: 1em;
+}
+#form_locaciones{
+	width: 80%;
+	margin: 0 auto;
+}
+#loc{
+	position: absolute;
+	right: 1.5em;
+	bottom: 1em;
+}
+.button_add{
+	position: relative;
+	left: 40%;
+}
+#add_ventas{
+	position: relative;
+	left: 50%;
+}
+#add_complementos{
+	position: relative;
+	left: 50%;
+}
+#add_entradas{
+	position: relative;
+	left: 50%;
+}
+#add_usuario{
+	position: relative;
+	left: 50%;
+}
+#add_alimentos{
+	position: relative;
+	left: 50%;
+}
+#add_categoria
+{
+	position: relative;
+	left: 50%;
+}
+#add_empleados{
+	position: relative;
+	left: 50%;
+}
+#add_descuentos{
+	position: relative;
+	left: 50%;
+}
+#add_m_pago{
+	position: relative;
+	left: 50%;
+}
+#add_locaciones{
+	position: relative;
+	left: 42%;
+}
+#add_t_l{
+	position: relative;
+	left: 50%;
+}
+#login{
+	background: rgba(30,154,217,0.7);
+	position: absolute;
+	width: 50%;
+	left: 25%;
+	bottom: 30%;
+	border-radius: 9px;
+	padding: 5%;
+}
+#logo{
+	position: relative;
+	width: 100%;
+	top: -5%;	
+}
+#logoN{
+	position: absolute;
+	width: 18%;
+	top: 2%;
+	left: 2%;
+}
+
+.invalid{
+	color: red;
+}
+#form_mp label{
+	display: block;
+}
+#form_alimentos label{
+	display: block;
+}
+#form_c_a label{
+	display: block;
+}
+#form_descuentos label{
+	display: block;
+}
+#form_empleado label{
+	display: block;
+}
+#form_locaciones label{
+	display: block;
+}
+#form_t_l label{
+	display: block;
+}
+#salir{
+	top:20%;
+	left: 94%;
+	position:absolute;	
+}
+#salirv{
+	top:20%;
+	left: 94%;
+	position:absolute;
+}
+#MoBv{
+	right:70%;
+	width: 250%;	 
+}
+#MoBc{
+	right:25%;
+	width: 150%;		 
+}
+#MoBcm{
+	right:70%;
+	width: 250%;
+}
+#MoBcc{
+	right:25%;
+	width: 150%;
+}
+#lf{
+	position: relative;
+	left: 18%;
+}
+#Fecha_f{
+	position: relative;
+	left: 18%;
+}
+#divp .cons{
+	margin-left:2.45%;
+	width: 30%; 
+}
+.ocupado{
+	background: #D3D3D3;
+}
+
+.libre{
+	background: white;
+}
+.ocupadoF{
+	background:#FDF8E4; 
+}
+.fueraser{
+	background: #F2DEDF;
+}
+.cons{
+	border:solid black; 
+	background:#D3D3D3; 
+}
+.cons span
+{
+	font-size: 1.5em;
+	color:black;
+}
+.cons strong a
+{
+	color: white;
+	text-decoration: none;
+	padding: .2em .5em;
+}
+.cons:hover{
+	background:white; 
+	
+}
+.cons span:hover{
+	color:#527ABB;
+}
+.cons:active{
+	padding:1.5em;
+}
+.intf{
+	  width: 30%;
+	  height: 34px;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  line-height: 1.428571429;
+	  color: #555555;
+	  vertical-align: middle;
+	  background-color: #ffffff;
+	  border: 1px solid #cccccc;
+	  border-radius: 4px; 
+}
+.intf:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
