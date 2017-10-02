@@ -7,12 +7,12 @@ if(!isset($_SESSION['id_usuario']))
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device‐width, initial‐scale=1.0"> 
-	<link rel="stylesheet" type="text/css" href="css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="fonts/icons/material-icons.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/materialize.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<title>Usuarios</title>
 	<script type="text/javascript">
 		$(document).ready(function()
@@ -83,21 +83,12 @@ if(!isset($_SESSION['id_usuario']))
 	</script>
 </head>
 <body>
-<span id="logoN" ><img src="img/logo.png" id="logo"></img></span>
-		
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
 	<!--SE MANDA A LLAMAR EL MENU PARA QUE SEA UN NAV BAR-->
-	<nav class="navbar navbar-dafault">
+	<div style="background-color: #5C5757;" class="align-centerx">
 		<?php
 			require_once("menu.php");
 		?>
-	</nav>
+	</div>
 	<!--SECCION EN LA CUAL ESTA LA TABLA EN LA CUAL SE IMPRIMEN LOS DATOS DE LA CONSULTA SQL-->
 	<section class="container">
 		

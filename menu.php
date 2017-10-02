@@ -1,44 +1,37 @@
-<nav class="navbar navbar-default" id="nav_p">
-	<div class="navbar-header">
-		<a id="salir" class="btn btn-info" href="index.php" >Salir</a>
-
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mi_primer_menu" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="alimentos.php">Sal si puedes</a>
-	</div >
-	<div class="collapse navbar-collapse" >
-		<ul class="nav navbar-nav" id="mi_primer_menu">
-
-			<li class="dropdown">
-				<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-hanspopup="true" aria-expanded="false">Control de alimentos<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				  <li><a href="alimentos.php">Alimentos</a></li>
-				  <li><a href="Existencias.php">Surtido</a></li>
-			   	  <li><a href="categorias.php">Categoria de Alimentos</a></li>
+<nav class="sidenav align-center" id="nav_p" style="padding-left: 1em;padding-right: 1em;">
+	<div>
+		<ul>
+			<li style="float: left; margin-right: 10%"><a id="salir" class="waves-effect waves-teal" href="index.php">Salir</a></li>		<!-- Dropdown Trigger -->
+			<li style="float: center">
+				<a class="dropdown-button" data-activates='dropdown2'>Control de alimentos</a>
+				<ul id="dropdown2" class="dropdown-content">
+					<li><a href="alimentos.php">Alimentos</a></li>
+					<li><a href="Existencias.php">Surtido</a></li>
+				   	<li><a href="categorias.php">Categoria de Alimentos</a></li>
 				</ul>
 			</li>
-
-			<li class="dropdown">
-				<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-hanspopup="true" aria-expanded="false">Control Locacional<span class="caret"></span></a>
-				<ul class="dropdown-menu">
+			<li style="float: center"> 
+				<a class="dropdown-button" data-activates='dropdown3'>Control Locacional</a>
+				<ul id="dropdown3" class="dropdown-content">
 					<li><a href="locaciones.php">Locaciones</a></li>
 					<li><a href="tipos_locacion.php">Tipos de Locaciones</a></li>
 				</ul>
 			</li>
-
-			<li class="dropdown">
-				<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-hanspopup="true" aria-expanded="false">Control Administrativo<span class="caret"></span></a>
-				<ul class="dropdown-menu">
+			<li style="float: center">
+				<a class="dropdown-button" data-activates='dropdown4'>Control Administrativo</a>
+				<ul id="dropdown4" class="dropdown-content">
 					<li><a href="usuarios.php">Usuarios</a></li>
 					<li><a href="empleados.php">Empleados</a></li>
 					<li><a href="metodos_pago.php">Metodos de Pago</a></li>
-					<li><a href="descuentos.php">Descuentos</a></li>								 <li><a href="consultas.php">Consultas</a></li>
+					<li><a href="descuentos.php">Descuentos</a></li>	
+					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
-			</li>		
+			</li>	
+			<li style="float: right;">
+				<a href="alimentos.php">
+					<img src="img/logo.png" width="100px" style="margin-bottom: -1em">
+				</a>
+			</li>
 		</ul>
 	</div>
 </nav>
@@ -51,5 +44,23 @@
 
 				});
 		});
+		$(".dropdown-button").dropdown({
+	      inDuration: 300,
+	      outDuration: 225,
+	      constrainWidth: false, // Does not change width of dropdown to that of the activator
+	      hover: true, // Activate on hover
+	      gutter: 0, // Spacing from edge
+	      belowOrigin: false, // Displays dropdown below the button
+	      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+	      stopPropagation: false // Stops event propagation
+	    }
+	  	);
 
 	</script>
+	<style type="text/css">
+		.dropdown-content {
+   			overflow-y: visible;
+   			border-radius: 3px;
+   			margin-top: 4em;
+		}
+	</style>
