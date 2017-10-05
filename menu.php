@@ -28,9 +28,14 @@
 				</ul>
 			</li>	
 			<li style="float: right;">
-				<a href="alimentos.php">
-					<img src="img/logo.png" width="100px" style="margin-bottom: -1em">
-				</a>
+				<div class="row">
+					<div  class="col s0 m1 l2">
+						<a href="alimentos.php">
+						<img src="img/logo.png" width="100px" style="margin-bottom: -1em">
+						</a>
+					</div>
+				</div>
+				
 			</li>
 		</ul>
 	</div>

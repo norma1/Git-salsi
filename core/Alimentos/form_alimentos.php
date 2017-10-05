@@ -1,53 +1,48 @@
-<div class="modal fade" id="modal_alimentos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-	<div class="modal-dialog"> 
-		<div class="modal-content"> 
-			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
-				<h4 class="modal-title" id="myModalLabel">
+<div class="modal-content"> 
+	<div class="modal-header">
+		<h4 class="modal-title" id="myModalLabel">
+		<?php
+			echo isset($_GET["id_alimento"])?"Modificar Alimento":"Agregar Alimento";
+		?></h4> <!-- se especifica el titulo del modal para diferenciarlos-->
+	</div >
+	<div class="modal-body">
+	<form action="#!" method="post" id="form_alimentos">
+
+				<input type="hidden" value="<?php echo isset($_GET["id_alimento"])?"update":"insert"; ?>" id="action" name="action" type="hidden">
+				<!-- se especifica el valor del value para que ejecute el case correspondiente-->
+
 				<?php
-					echo isset($_GET["id_alimento"])?"Modificar Alimento":"Agregar Alimento";
-				?></h4> <!-- se especifica el titulo del modal para diferenciarlos-->
-			</div >
-			<div class="modal-body">
-			<form action="#!" method="post" id="form_alimentos">
-
-						<input type="hidden" value="<?php echo isset($_GET["id_alimento"])?"update":"insert"; ?>" id="action" name="action" type="hidden">
-						<!-- se especifica el valor del value para que ejecute el case correspondiente-->
-
-						<?php
-							if(isset($_GET["id_alimento"]))
-								echo '<input value="'.$_GET["id_alimento"].'"id="id_alimento" name="id_alimento" type="hidden">';
-						?>
+					if(isset($_GET["id_alimento"]))
+						echo '<input value="'.$_GET["id_alimento"].'"id="id_alimento" name="id_alimento" type="hidden">';
+				?>
 
 
-				<label for="Des"> Descripcion</label>
-				<input type="Text" placeholder="Descripcion" class="form-control" name="Des" id="Des" required>
-				<br>
-				<label for="Pre"> Precio</label>
-				<input type="Text" placeholder="Precio" class="form-control" name="Pre" id="Pre" required>
-				<br>
-				<label for="Cat">Categoria</label>
-				
-				
-				<select value=""  class="form-control" name="Cat" id="Cat" required>
-					 
-				</select><a class='btn btn-success' id="catego"><span class='glyphicon glyphicon-plus' id="btn_catego"></span></a>
+		<div class="input-field">
+			<input type="text" placeholder="Descripcion" class="validate" name="Des" id="Des" required>
+			<label for="Des"> Descripción</label>
+		</div>
+		<div class="input-field">
+			<input type="text" placeholder="Precio" class="validate" name="Pre" id="Pre" required>
+			<label for="Pre"> Precio</label>
+		</div>
+		<div class="input-field">
+			<select value=""  class="validate" name="Cat" id="Cat" required>
+			</select>
+			<label>Categoria</label>
+		</div>
+		<a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" href="#container_modal2" id="add_categoria"><span class="material-icons">add</span></a>
 
-			</form>
-			</div>
-			<div class="modal-footer"> 
-			<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar"></input> 
-			<input  type="button" class="btn btn-primary" id="aceptar" value="Aceptar">
-			</div >
-		</div > 
-	</div > 
-</div >
+	</form>
+	</div>
+	<div class="modal-footer"> 
+	<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar"></input> 
+	<input  type="button" class="btn btn-primary" id="aceptar" value="Aceptar">
+	</div >
+</div > 
 <script type="text/javascript">
 get_all_cat();
-$("#modal_alimentos").modal();
+$(".modal").modal();
+$("#container_modal").modal('open');
 	$("#aceptar").click(function(){
 		$("#form_alimentos").submit();
 	});
@@ -105,9 +100,23 @@ $("#modal_alimentos").modal();
 					cod_html+="<option value='"+dat["id_categoria_a"]+"'>"+dat["descripcion"]+"</option>";
 				}
 				$("#Cat").html(cod_html);
-
+				$('select').material_select();
 			});
 		}
 
-
 </script>
+<style type="text/css">
+	input-field.select-dropdown
+	{
+		color: black;
+		overflow-y: visible;
+		border-radius: 3px;
+		margin-top: 4em;
+	}
+	input-field.dropdown-content{
+		color: black;
+		overflow-y: visible;
+		border-radius: 3px;
+		margin-top: 4em;
+	}
+</style>

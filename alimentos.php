@@ -108,7 +108,8 @@ if(!isset($_SESSION['id_usuario']))
 					<input type="text" id="busc" name="busc"  placeholder="Buscar">
 					<label for="busc">Buscar</label>
 				</div>
-				<div class="text-center"><a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" id="add_alimentos"><span class="material-icons">add</span></a>
+				<div class="text-center">
+					<a class="waves-effect waves-teal btn green modal-trigger" style="width: 2em;height: 2em;padding: 0.2em;float: right;" href="#container_modal"  id="add_alimentos"><span class="material-icons">add</span></a>
 				<h4>Alimentos</h4>
 				</div>
 				<div class="panel">
@@ -128,8 +129,9 @@ if(!isset($_SESSION['id_usuario']))
 		</div>
 
 	</section>
-	<aside id="container_modal">	
-	</aside>
+	<div id="container_modal" class="modal">
+  	</div>
+
 	<aside id="container_modal2">	
 	</aside>
 <div class="modal fade" id="Modal_confirm_deleteA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
