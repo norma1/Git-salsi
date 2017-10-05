@@ -62,7 +62,7 @@ if(!isset($_SESSION['id_usuario']))
 							clase="ocupado";
 						}
 					}	
-					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td>$"+info['precio']+"</td><td>"+info['categoria']+"</td><td>"+info['existencia']+"</td><td><a class='waves-effect btn-flat' data-id='"+info["id_alimento"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td><a class='waves-effect btn-flat' data-id='"+info["id_alimento"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
+					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td>$"+info['precio']+"</td><td>"+info['categoria']+"</td><td>"+info['existencia']+"</td><td class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_alimento"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_alimento"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
 					//se insertan los datos a la tabla
 				}
 				$("#content_table").html(cod_html);
@@ -108,7 +108,7 @@ if(!isset($_SESSION['id_usuario']))
 					<input type="text" id="busc" name="busc"  placeholder="Buscar">
 					<label for="busc">Buscar</label>
 				</div>
-				<div class="panel-heading text-center"><a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" id="add_alimentos"><span class="material-icons">add</span></a>
+				<div class="text-center"><a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" id="add_alimentos"><span class="material-icons">add</span></a>
 				<h4>Alimentos</h4>
 				</div>
 				<div class="panel">
@@ -118,8 +118,8 @@ if(!isset($_SESSION['id_usuario']))
 					 		<th>Precio</th>
 					 		<th>Categoria</th>
 					 		<th>Existencias</th>
-					 		<th>Eliminar</th>
-					 		<th>Editar</th>
+					 		<th class='centrado'>Eliminar</th>
+					 		<th class='centrado'>Editar</th>
 					 	</tr>
 					 	<tbody id="content_table"></tbody>
 					 	
@@ -159,4 +159,18 @@ if(!isset($_SESSION['id_usuario']))
 	<aside id="container_modal2">
 	</aside>
 </body>
+<style type="text/css">
+	table tr:hover
+	{
+		background-color: lightgray;
+	}
+	table .centrado
+	{
+		text-align: center;
+	}
+	table tr td
+	{
+		padding: 0em;
+	}
+</style>	
 </html>
