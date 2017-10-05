@@ -50,8 +50,9 @@ if(!isset($_SESSION['id_usuario']))
 				for (var i=0;i<datos.length;i++) 
 				{
 					var info=datos[i];
-					cod_html+="<tr><td>"+info['descripcion']+"</td><td>"+info['cantidad']+"</td><td>$"+info['precio_u']+"</td><td>"+info['fecha']+"</td><td><a class='btn btn-danger btn_eliminar' data-id='"+info["id_entrada"]+"'><span class='glyphicon glyphicon-minus'></span></a></td></tr>";
+					cod_html+="<tr><td>"+info['descripcion']+"</td><td>"+info['cantidad']+"</td><td>$"+info['precio_u']+"</td><td>"+info['fecha']+"</td><td class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_entrada"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></a></td></tr>";
 					//se insertan los datos a la tabla
+					"1" 
 				}
 				$("#content_table").html(cod_html);
 				
@@ -107,28 +108,27 @@ if(!isset($_SESSION['id_usuario']))
 	<!--SECCION EN LA CUAL ESTA LA TABLA EN LA CUAL SE IMPRIMEN LOS DATOS DE LA CONSULTA SQL-->
 	<section class="container">
 		
-		<div class="panel panel-default">
-		<div class="panel-body" id="div_bus">
-			<input type="text" id="busc" name="busc"  class="form-control bus" placeholder="Buscar">
-		</div>
-			<div class="panel-heading text-center"><a class="btn btn-success" id="add_entradas"  ><span class="glyphicon glyphicon-plus"></span></a>
-			
-				Surtido
-			</div>
-			<div class="panel-body table-responsive">
-				 <table class="table">
-				 	<tr>
-				 		<th>Producto</th>
-				 		<th>Cantidad</th>
-				 		<th>Precio Unitario</th>
-				 		<th>Fecha</th>
-				 		<th>Eliminar</th>
-				 	</tr>
-				 	<tbody id="content_table"></tbody>
-				 	
-				 </table>
-			</div>
-		</div>
+		<div class="card-panel z-depth-3 grey lighten-2">
+			<div class="container">
+				<div class="input-field align-center">
+					<input type="text" id="busc" name="busc"  placeholder="Buscar">
+					<label for="busc">Buscar</label>
+				</div>
+				<div class="text-center"><a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" id="add_entradas"><span class="material-icons">add</span></a>
+				<h4>Surtido</h4>
+				</div>
+					 <table class="table responsive-table bordered">
+					 	<tr>
+					 		<th>Producto</th>
+					 		<th>Cantidad</th>
+					 		<th>Precio Unitario</th>
+					 		<th>Fecha</th>
+					 		<th class='centrado'>Eliminar</th>
+					 	</tr>
+					 	<tbody id="content_table"></tbody>
+					 	
+					 </table>
+				</div>
 
 	</section>
 	<aside id="container_modal">	
@@ -162,4 +162,18 @@ if(!isset($_SESSION['id_usuario']))
 	<aside id="container_modal2">
 	</aside>
 </body>
+<style type="text/css">
+	table tr:hover
+	{
+		background-color: lightgray;
+	}
+	table .centrado
+	{
+		text-align: center;
+	}
+	table tr td
+	{
+		padding: 0em;
+	}
+</style>
 </html>

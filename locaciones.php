@@ -92,15 +92,18 @@ if(!isset($_SESSION['id_usuario']))
 					for (var i=0;i<datos.length;i++)
 					{
 						var info=datos[i];
-						cod_title+="<li><a data-toggle='tab' data-id='"+info["id_tipo_l"]+"' href='#target"+info["id_tipo_l"]+"'>"+info["descripcion"]+"</a><li>";
+						cod_title+="<li class='tab col s3'><a data-id='"+info["id_tipo_l"]+"' href='#content_tab"+info["id_tipo_l"]+"'>"+info["descripcion"]+"</a><li>";
 
-						cod_cont+="<div id='target"+info["id_tipo_l"]+"'class=tab-pane fade><div class='panel panel-default'><div class='panel-heading text-center'>Seccion de "+info["descripcion"]+"<a href='#!' class='button_add btn btn-success' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-plus'></span></a> </div><div class='panel-body' id='content_tab"+info["id_tipo_l"]+"'></div></div></div>";
+						cod_cont+="<div id='content_tab"+info["id_tipo_l"]+"'class='col s12'><div class='card-panel'><h5>Sección de "+info["descripcion"]+"</h5><a class='waves-effect waves-teal btn green' style='width: 2em;height: 2em;padding: 0.2em;float: right;' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='material-icons'>add</span></a> </div></div>";
+						console.log(cod_cont);
+						$("#cont_info_nav_tabs").append(cod_cont);
+						cod_cont="";
 					}
 					$("#cont_nav_tabs").html(cod_title);
-					$("#cont_info_nav_tabs").html(cod_cont);
+					
 
-				$('#cont_nav_tabs.nav-tabs a:first').tab('show');
-				get_all($('#cont_nav_tabs.nav-tabs a:first').data("id"));	
+				$('#cont_nav_tabs.tabs a:first').tab('show');
+				get_all($('#cont_nav_tabs.tabs a:first').data("id"));	
 				});
 		}
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,13 +118,16 @@ if(!isset($_SESSION['id_usuario']))
 	</div>
 
 	<section class="container">
-		<ul id="cont_nav_tabs" class="nav nav-tabs" style="background: #F5F5F5;">
-			
-		</ul>
-			
-		<div class="tab-content" id="cont_info_nav_tabs">
-			
-		</div>	
+		<div class="row">
+			<div class="col s12">
+				<ul id="cont_nav_tabs" class="tabs">
+					
+				</ul>
+			</div>
+			<div class="tab-content" id="cont_info_nav_tabs">
+				
+			</div>	
+		</div>
 	</section>
 
 	<aside id="container_modal">
@@ -156,4 +162,13 @@ if(!isset($_SESSION['id_usuario']))
 </div >
 
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+  	});
+ 	$(document).ready(function(){
+    	$('ul.tabs').tabs('select_tab', 'tab_id');
+  	});
+       
+</script>
 </html>

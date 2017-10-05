@@ -59,7 +59,7 @@ if(!isset($_SESSION['id_usuario']))
 					}else{
 						clase="ocupado";
 					}	
-					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td><a class='btn btn-danger btn_eliminar' data-id='"+info["id_categoria_a"]+"'><span class='glyphicon glyphicon-minus'></span></a></td><td><a class='btn btn-warning btn_modificar' data-id='"+info["id_categoria_a"]+"'><span class='glyphicon glyphicon-pencil'></span></a></td></tr>";
+					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td  class='centrado'><a class='waves-effect btn-flat data-id='"+info["id_categoria_a"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td  class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_categoria_a"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
 					//se insertan los datos a la tabla
 				}
 				$("#content_table").html(cod_html);
@@ -99,25 +99,24 @@ if(!isset($_SESSION['id_usuario']))
 
 	<section class="container">
 		
-		<div class="panel panel-default">
-		<div class="panel-body">
-			<input type="text" id="busc" name="busc"  class="form-control bus" placeholder="Buscar">
-		</div>
-			<div class="panel-heading text-center"><a class="btn btn-success add" id="add_categoria" ><span class="glyphicon glyphicon-plus"></span></a>
-			
-				Categorias
-			</div>
-			<div class="panel-body table-responsive">
-				 <table class="table">
-				 	<tr>
-				 		<th>Descripcion</th>
-				 		<th>Eliminar</th>
-				 		<th>Editar</th>
-				 	</tr>
-				 	<tbody id="content_table"></tbody>
-				 	
-				 </table>
-			</div>
+		<div class="card-panel z-depth-3 grey lighten-2">
+			<div class="container">
+				<div class="input-field align-center">
+					<input type="text" id="busc" name="busc"  placeholder="Buscar"><label for="busc">Buscar</label>
+				</div>
+				<div class="text-center"><a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" id="add_categoria" ><span class="material-icons">add</span></a>
+				<h4>Categorías</h4>
+				</div>
+					 <table class="table responsive-table bordered">
+					 	<tr>
+					 		<th>Descripcion</th>
+					 		<th class='centrado'>Eliminar</th>
+					 		<th class='centrado'>Editar</th>
+					 	</tr>
+					 	<tbody id="content_table"></tbody>
+					 	
+					 </table>
+				</div>
 		</div>
 
 	</section>
@@ -148,4 +147,18 @@ if(!isset($_SESSION['id_usuario']))
 	</div > 
 </div >
 </body>
+<style type="text/css">
+	table tr:hover
+	{
+		background-color: lightgray;
+	}
+	table .centrado
+	{
+		text-align: center;
+	}
+	table tr td
+	{
+		padding: 0em;
+	}
+</style>
 </html>

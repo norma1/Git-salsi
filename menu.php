@@ -63,4 +63,7 @@
    			border-radius: 3px;
    			margin-top: 4em;
 		}
+		.dropdown-content li a{
+			color: black;
+		}
 	</style>
