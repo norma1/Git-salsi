@@ -35,7 +35,7 @@ require_once("../conexion.php");
 
 		case "delete":
 			$sql="delete from categorias_a where id_categoria_a='".$_POST["id_categoria_a"]."'";
-            $conexion->query($sql);
+            $conexion->query($sql)or trigger_error($conexion->error."[$sql]");
 		break;	
 
 		case "update":

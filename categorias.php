@@ -22,9 +22,14 @@ if(!isset($_SESSION['id_usuario']))
 			{
 				$("#container_modal").load("core/Categorias/form_categorias.php");
 			});
+			$("#canci").click(function()
+			{
+				$("#Modal_confirm_deleteCa").modal('close');
+			});
 /////////////////////////////////////////////////////////////////////////////////////
 			$("#content_table").on("click","a.btn_eliminar",function(){
 				$("#Modal_confirm_deleteCa").modal();
+				$("#Modal_confirm_deleteCa").modal('open');
 				$("#btn_confirm_deleteCa").data("id",$(this).data("id"));
 			});
 			$("#btn_confirm_deleteCa").click(function(event){
@@ -32,7 +37,7 @@ if(!isset($_SESSION['id_usuario']))
 				$.post("core/Categorias/controller_categorias.php",{action:'delete',id_categoria_a:id_categoria_a},
 					function(){
 						get_all();
-						$("#Modal_confirm_deleteCa").modal("hide");
+						$("#Modal_confirm_deleteCa").modal('close');
 					});
 			});
 /////////////////////////////////////////////////////////////////////////////////////		
@@ -59,7 +64,7 @@ if(!isset($_SESSION['id_usuario']))
 					}else{
 						clase="ocupado";
 					}	
-					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td  class='centrado'><a class='waves-effect btn-flat data-id='"+info["id_categoria_a"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td  class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_categoria_a"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
+					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td  class='centrado'><a class='waves-effect btn_eliminar' data-id= '"+info["id_categoria_a"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td  class='centrado'><a class='waves-effect btn-flat btn_modificar' data-id='"+info["id_categoria_a"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
 					//se insertan los datos a la tabla
 				}
 				$("#content_table").html(cod_html);
@@ -120,8 +125,8 @@ if(!isset($_SESSION['id_usuario']))
 		</div>
 
 	</section>
-	<aside id="container_modal">
-	</aside>
+	<div id="container_modal" class="modal">
+  	</div>
 
 	<div class="modal fade" id="Modal_confirm_deleteCa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
 	<div class="modal-dialog"> 
@@ -129,10 +134,6 @@ if(!isset($_SESSION['id_usuario']))
 
 
 			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
 				<h4 class="modal-title" id="myModalLabel">
 				</h4> <!-- se especifica el titulo del modal para diferenciarlos-->
 			</div >
@@ -140,7 +141,7 @@ if(!isset($_SESSION['id_usuario']))
 				 Seguro que desea eliminar el registro		
 			</div>
 			<div class="modal-footer"> 
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button> 
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="canci">Cancelar</button> 
 			<input  type="button" class="btn btn-primary" id="btn_confirm_deleteCa" value="Aceptar">
 
 		</div > 

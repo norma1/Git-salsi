@@ -18,24 +18,28 @@
 
 
 		<div class="input-field">
+			<label for="Des">Descripcion</label>
 			<input type="text" placeholder="Descripcion" class="validate" name="Des" id="Des" required>
-			<label for="Des"> Descripción</label>
 		</div>
 		<div class="input-field">
+			<label for="Pre">Precio</label>
 			<input type="text" placeholder="Precio" class="validate" name="Pre" id="Pre" required>
-			<label for="Pre"> Precio</label>
 		</div>
 		<div class="input-field">
+			<label for="Cat" id="cati">Categoria</label>
 			<select value=""  class="validate" name="Cat" id="Cat" required>
 			</select>
-			<label>Categoria</label>
 		</div>
-		<a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float: right;" href="#container_modal2" id="add_categoria"><span class="material-icons">add</span></a>
+		<div class="input-field">
+		
+		<label style="float: left; position: relative;">Añadir una nueva categoria</label>
+		<a class="waves-effect waves-teal btn green" style="width: 2em;height: 2em;padding: 0.2em;float:left; left:5%; position: relative; " href="#container_modal2" id="add_categoria"><span class="material-icons">add</span></a>
+		</div>
 
 	</form>
 	</div>
 	<div class="modal-footer"> 
-	<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar"></input> 
+	<input type="button" class="btn btn-danger" id="cancelar" data-dismiss="modal" value="Cancelar"></input> 
 	<input  type="button" class="btn btn-primary" id="aceptar" value="Aceptar">
 	</div >
 </div > 
@@ -43,13 +47,17 @@
 get_all_cat();
 $(".modal").modal();
 $("#container_modal").modal('open');
+
 	$("#aceptar").click(function(){
 		$("#form_alimentos").submit();
 	});
+	$("#cancelar").click(function(){
+		$("#container_modal").modal('close');
+	});
 	
-	$("#catego").click(function()
+	$("#add_categoria").click(function()
 		{	
-				$("#container_modal2").load("core/Categorias/form_categorias.php");
+			$("#container_modal2").modal('open');
 		});
 
 	jQuery.validator.addMethod("validar_form", function(value, element) {
@@ -83,7 +91,7 @@ $("#container_modal").modal('open');
 			$.post("core/Alimentos/controller_alimentos.php",$("#form_alimentos").serialize()
 				,function(){
 					get_all();
-					$("#modal_alimentos").modal("hide");
+					$("#container_modal").modal('close');
 				});
 		}
 	});	
@@ -118,5 +126,16 @@ $("#container_modal").modal('open');
 		overflow-y: visible;
 		border-radius: 3px;
 		margin-top: 4em;
+	}
+	#Des-error{
+		position: relative;
+		color: red
+	}
+	#Pre-error{
+		position: relative;
+		color: red
+	}
+	#cati{
+		position: relative;
 	}
 </style>

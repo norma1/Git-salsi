@@ -15,7 +15,7 @@ require_once("../conexion.php");
 		case "get_all_id":
 
 				$id_categoria_a=$_POST["id_categoria_a"];
-				$sql="select * from alimentos where id_categoria_a='".$id_categoria_a."' and estado=1 and existencia > 0 order by descripcion asc;";
+				$sql="select * from alimentos where id_categoria_a='".$id_categoria_a."' and estado=1 order by descripcion asc;";
 				$result=$conexion->query($sql);
 				$dat=array();
 				while($row=$result->fetch_array())

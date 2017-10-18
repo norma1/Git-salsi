@@ -23,9 +23,14 @@ if(!isset($_SESSION['id_usuario']))
 			{
 				$("#container_modal").load("core/Existencias/form_existencias.php");
 			});
+			$("#canci").click(function()
+			{
+				$("#Modal_confirm_deleteE").modal('close');
+			});
 //////////////////////////////////////////////////////////////////////////////////////		
 			$("#content_table").on("click","a.btn_eliminar",function(){
 				$("#Modal_confirm_deleteE").modal();
+				$("#Modal_confirm_deleteE").modal('open');
 				$("#btn_confirm_deleteE").data("id",$(this).data("id"));
 			});
 
@@ -34,7 +39,7 @@ if(!isset($_SESSION['id_usuario']))
 				$.post("core/Existencias/controller_existencias.php",{action:'delete',id_entrada:id_entrada},
 					function(){
 						get_all();
-						$("#Modal_confirm_deleteE").modal("hide");
+						$("#Modal_confirm_deleteE").modal('close');
 					});
 			});
 		});	
@@ -50,7 +55,7 @@ if(!isset($_SESSION['id_usuario']))
 				for (var i=0;i<datos.length;i++) 
 				{
 					var info=datos[i];
-					cod_html+="<tr><td>"+info['descripcion']+"</td><td>"+info['cantidad']+"</td><td>$"+info['precio_u']+"</td><td>"+info['fecha']+"</td><td class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_entrada"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></a></td></tr>";
+					cod_html+="<tr><td>"+info['descripcion']+"</td><td>"+info['cantidad']+"</td><td>$"+info['precio_u']+"</td><td>"+info['fecha']+"</td><td class='centrado'><a class='waves-effect btn_eliminar' data-id='"+info["id_entrada"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td></tr>";
 					//se insertan los datos a la tabla
 					"1" 
 				}
@@ -131,20 +136,17 @@ if(!isset($_SESSION['id_usuario']))
 				</div>
 
 	</section>
-	<aside id="container_modal">	
-	</aside>
+	<div id="container_modal" class="modal">
+  	</div>
 	<aside id="container_modal2">	
 	</aside>
-	<div class="modal fade" id="Modal_confirm_deleteE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+
+<div class="modal fade" id="Modal_confirm_deleteE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
 	<div class="modal-dialog"> 
 		<div class="modal-content"> 
 
 
 			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
 				<h4 class="modal-title" id="myModalLabel">
 				</h4> <!-- se especifica el titulo del modal para diferenciarlos-->
 			</div >
@@ -152,7 +154,7 @@ if(!isset($_SESSION['id_usuario']))
 				 Seguro que desea eliminar el registro		
 			</div>
 			<div class="modal-footer"> 
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button> 
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="canci">Cancelar</button> 
 			<input  type="button" class="btn btn-primary" id="btn_confirm_deleteE" value="Aceptar">
 
 		</div > 

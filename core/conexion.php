@@ -1,5 +1,5 @@
 <?php
-	$conexion=new mysqli("localhost","root","","salsi");
+	$conexion=new mysqli("localhost","root","Puchito56","salsi");
 	if ($conexion->connect_errno) 
 	{
 		echo "no se pudo";

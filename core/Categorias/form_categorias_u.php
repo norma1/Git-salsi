@@ -1,63 +1,65 @@
-<div class="modal fade" id="modal_c_a_u" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-	<div class="modal-dialog"> 
-		<div class="modal-content"> 
-
-
-			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
+<div class="modal-content"> 
+	<div class="modal-header"
 				<h4 class="modal-title" id="myModalLabel">
 				<?php
-					echo isset($_GET["id_categoria_a"])?"Modificar Categoria":"Agregar Categoria de Alimento";
+					echo isset($_GET["id_categoria_a"])?"Modificar Empleado":"Agregar Categoria de Alimento";
 				?></h4> <!-- se especifica el titulo del modal para diferenciarlos-->
-			</div >
-			<div class="modal-body">
-				<form action="#!" method="post" id="form_c_a_u">
+	</div >
+	<div class="modal-body">
+		<form action="#!" method="post" id="form_c_a_u">
 						<input type="hidden" value="<?php echo isset($_GET["id_categoria_a"])?"update":"insert"; ?>" name="action">
 						<!-- se especifica el valor del value para que ejecute el case correspondiente-->
 						<?php
 							if(isset($_GET["id_categoria_a"]))
 								echo '<input value="'.$_GET["id_categoria_a"].'"id="id_categoria_a" name="id_categoria_a" type="hidden">';
 						?>
-						
-						<label for="CA">Descripcion</label>
-						<input type="text" name="CA" class="form-control" placeholder="Categoria de Alimentos" id="CA" >
-						<br>
-						<label for="Est">Estado</label>
-						<select value="" class="form-control" name="Est" id="Est" required>
-							<option value="1">Activo</option>
-							<option value="0">Desactivado</option>
-						</select>
-						
-				</form>			
-			</div>
-			<div class="modal-footer"> 
-			<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar"></input>
-			<input  type="button" class="btn btn-primary" id="aceptar" value="Aceptar">
-			</div>
-		</div > 
-	</div > 
-</div >
-<script>
-	$("#modal_c_a_u").modal();
+						<div class="input-field">
+							<label for="CA" style="position: relative;">Categoria</label>	
+							<input type="text" name="CA" class="validate"  id="CA" >
+						</div>
 
-	$("#aceptar").click(function()
-	{
-		$("#form_c_a_u").submit();	
+						<div class="input-field">
+				          <label for="Est" id="esti" style="position: relative;">Estado</label>
+					        <select value="" class="validate" name="Est" id="Est" required>
+					          <option value="1">Activo</option>
+					          <option value="0">Desactivado</option>
+					        </select>
+						</div>
+						
+		</form>
+	</div>
+	<div class="modal-footer"> 
+	<input type="button" class="btn btn-danger" id="cancelar" data-dismiss="modal" value="Cancelar"></input> 
+	<input  type="button" class="btn btn-primary" id="aceptar" value="Aceptar">
+	</div >
+</div > 
+<script type="text/javascript">
+$(".modal").modal();
+$("#container_modal").modal('open');
+
+	$("#aceptar").click(function(){
+		$("#form_c_a_u").submit();
+	});
+	$("#cancelar").click(function(){
+		$("#container_modal").modal('close');
 	});
 
-	<?php
+	$("#canci").click(function(){
+    	$("#Modal_confirm_modificar").modal('close')
+  	});
+
+<?php
+
 	if(isset($_GET["id_categoria_a"]))
 		{
 ?>
-		$.post("core/Categorias/controller_categorias.php",{action:"get_one",id_categoria_a:
-			<?php echo $_GET["id_categoria_a"]?>},function(res){
+		$.post("core/Categorias/controller_categorias.php",{action:"get_one",id_categoria_a:<?php echo $_GET["id_categoria_a"]?>},function(res){
 				var dat=JSON.parse(res);
 				dat=dat[0];
 				$("#CA").val(dat["descripcion"]);
 				$("#Est").val(dat["estado"]);
+				$('select').material_select();
+
 	});
 <?php
 		}
@@ -84,37 +86,57 @@
 		},
 
 		submitHandler:function(form){
-			$("#Modal_confirm_modificar_Ca").modal();
-				$("#btn_confirm_modificar_Ca").click(function(event){
-					$("#Modal_confirm_modificar_Ca").modal("hide");
+			$("#Modal_confirm_modificar").modal('open');
+			var length=$(".modal-overlay").length-1;
+	        $(".modal-overlay")[1].style.opacity="0";
+	        $(".modal-overlay")[1].style.zIndex="0";
+				$("#btn_confirm_modificar").click(function(event){
+					$("#Modal_confirm_modificar").modal("close");
 					$.post("core/Categorias/controller_categorias.php", $('#form_c_a_u').serialize(), function(){
 				get_all();
 				});
-					$("#modal_c_a_u").modal("hide");
+					$("#container_modal").modal("close");
+
 				});
 		}
 	});	
 </script>
-<div class="modal fade" id="Modal_confirm_modificar_Ca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-	<div class="modal-dialog"> 
-		<div class="modal-content"> 
+<div class="modal fade" id="Modal_confirm_modificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog"> 
+    <div class="modal-content"> 
+      <div class="modal-header"> 
+        <h4 class="modal-title" id="myModalLabel">
+        </h4> <!-- se especifica el titulo del modal para diferenciarlos-->
+      </div >
 
+      <div class="modal-body">
+         Seguro que desea modificar el registro    
+      </div>
 
-			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
-				<h4 class="modal-title" id="myModalLabel">
-				</h4> <!-- se especifica el titulo del modal para diferenciarlos-->
-			</div >
-			<div class="modal-body">
-				 Seguro que desea modificar sus datos	
-			</div>
-			<div class="modal-footer"> 
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button> 
-			<input  type="button" class="btn btn-primary" id="btn_confirm_modificar_Ca" value="Aceptar">
-
-		</div > 
-	</div > 
+      <div class="modal-footer"> 
+      <button type="button" class="btn btn-default" data-dismiss="modal" id="canci">Cancelar</button> 
+      <input  type="button" class="btn btn-primary" id="btn_confirm_modificar" value="Aceptar">
+      </div>
+    </div > 
+  </div > 
 </div >
+<style type="text/css">
+	input-field.select-dropdown
+	{
+		color: black;
+		overflow-y: visible;
+		border-radius: 3px;
+		margin-top: 4em;
+	}
+	input-field.dropdown-content{
+		color: black;
+		overflow-y: visible;
+		border-radius: 3px;
+		margin-top: 4em;
+	}
+	#CA-error{
+		position: relative;
+    	color: red
+	}
+  
+</style>

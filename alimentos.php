@@ -22,9 +22,15 @@ if(!isset($_SESSION['id_usuario']))
 			{
 				$("#container_modal").load("core/Alimentos/form_alimentos.php");
 			});
+			$("#canci").click(function(){
+				$("#Modal_confirm_deleteA").modal('close');
+			});
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 			$("#content_table").on("click","a.btn_eliminar",function(){
 				$("#Modal_confirm_deleteA").modal();
+				$("#Modal_confirm_deleteA").modal('open');
 				$("#btn_confirm_deleteA").data("id",$(this).data("id"));
 			});
 
@@ -33,12 +39,15 @@ if(!isset($_SESSION['id_usuario']))
 				$.post("core/Alimentos/controller_alimentos.php",{action:'delete',id_alimento:id_alimento},
 					function(){
 						get_all();
-						$("#Modal_confirm_deleteA").modal("hide");
+						$("#Modal_confirm_deleteA").modal('close');
 					});
 			});
+
+			
 //////////////////////////////////////////////////////////////////////////////////////////////
 			$("#content_table").on("click","a.btn_modificar",function(){
 				var id_alimento=$(this).data("id");
+				
 				$("#container_modal").load("core/Alimentos/form_alimentos_u.php?id_alimento="+id_alimento);
 			});		
 		});
@@ -62,7 +71,7 @@ if(!isset($_SESSION['id_usuario']))
 							clase="ocupado";
 						}
 					}	
-					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td>$"+info['precio']+"</td><td>"+info['categoria']+"</td><td>"+info['existencia']+"</td><td class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_alimento"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td class='centrado'><a class='waves-effect btn-flat' data-id='"+info["id_alimento"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
+					cod_html+="<tr class='"+clase+"'><td>"+info['descripcion']+"</td><td>$"+info['precio']+"</td><td>"+info['categoria']+"</td><td>"+info['existencia']+"</td><td class='centrado'><a class='waves-effect btn-flat btn_eliminar' data-id='"+info["id_alimento"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td class='centrado'><a class='waves-effect btn-flat btn_modificar' data-id='"+info["id_alimento"]+"' style='color: #1976d2'><span class='material-icons'  style='margin-top: 0.2em'>edit</span></a></td></tr>";
 					//se insertan los datos a la tabla
 				}
 				$("#content_table").html(cod_html);
@@ -132,16 +141,13 @@ if(!isset($_SESSION['id_usuario']))
 	<div id="container_modal" class="modal">
   	</div>
 
-	<aside id="container_modal2">	
-	</aside>
+	<div id="container_modal2" class="modal">
+  	</div>
+
 <div class="modal fade" id="Modal_confirm_deleteA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
 	<div class="modal-dialog"> 
 		<div class="modal-content"> 
 			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
 				<h4 class="modal-title" id="myModalLabel">
 				</h4> <!-- se especifica el titulo del modal para diferenciarlos-->
 			</div >
@@ -151,7 +157,7 @@ if(!isset($_SESSION['id_usuario']))
 			</div>
 
 			<div class="modal-footer"> 
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button> 
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="canci">Cancelar</button> 
 			<input  type="button" class="btn btn-primary" id="btn_confirm_deleteA" value="Aceptar">
 			</div>
 		</div > 

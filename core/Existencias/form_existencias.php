@@ -1,72 +1,68 @@
-<div class="modal fade" id="modal_entradas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-	<div class="modal-dialog"> 
-		<div class="modal-content"> 
-			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
-				<h4 class="modal-title" id="myModalLabel">
+<div class="modal-content"> 
+	<div class="modal-header">
+		<h4 class="modal-title" id="myModalLabel">
 				<?php
 					echo isset($_GET["id_entrada"])?"Modificar Alimento":"Agregar Entrada";
 				?></h4> <!-- se especifica el titulo del modal para diferenciarlos-->
-			</div >
+	</div >
 			<div class="modal-body">
-			<form action="#!" method="post" id="form_entradas">
+				<form action="#!" method="post" id="form_entradas">
 
-						<input type="hidden" value="<?php echo isset($_GET["id_entrada"])?"update":"insert"; ?>" id="action" name="action" type="hidden">
-						<!-- se especifica el valor del value para que ejecute el case correspondiente-->
+							<input type="hidden" value="<?php echo isset($_GET["id_entrada"])?"update":"insert"; ?>" id="action" name="action" type="hidden">
+							<!-- se especifica el valor del value para que ejecute el case correspondiente-->
 
-						<?php
-							if(isset($_GET["id_entrada"]))
-								echo '<input value="'.$_GET["id_entrada"].'"id="id_entrada" name="id_entrada" type="hidden">';
-						?>
+							<?php
+								if(isset($_GET["id_entrada"]))
+									echo '<input value="'.$_GET["id_entrada"].'"id="id_entrada" name="id_entrada" type="hidden">';
+							?>
 
+					<div class="input-field">
+						<label for="Cat" style="position: relative;">Categoria de Alimento</label>
+						<select value=""  class="validate" name="Cat" id="Cat" required> 
+						</select>
+					</div>
 
-				<label for="Cat">Categoria de Alimento</label>
-				<select value=""  class="form-control" name="Cat" id="Cat" required>
-					 
-				</select>
-				<br>
+					<div class="input-field">
+						<label for="Ali" style="position: relative;">Producto</label>
+						<select value=""  class="validate" name="Ali" id="Ali" required>	 
+						</select>
+					</div>
 
-				<label for="Ali">Producto</label>
-				<select value=""  class="form-control" name="Ali" id="Ali" required>
-					 
-				</select>
-				<br>
+					<div class="input-field">
+						<label for="Can" style="position: relative;"> Cantidad</label>
+						<input type="Text" placeholder="Cantidad" class="form-control" name="Can" id="Can" required>
+					</div>
 
-				<label for="Can"> Cantidad</label>
-				<input type="Text" placeholder="Cantidad" class="form-control" name="Can" id="Can" required>
-				<br>
+					<div class="input-field">
+						<label for="Pre" style="position: relative;">Precio Unitario</label>
+						<input type="Text" placeholder="Precio Unitario" class="form-control" name="Pre" id="Pre" required>
+					</div>
 
-				<label for="Pre">Precio Unitario</label>
-				<input type="Text" placeholder="Precio Unitario" class="form-control" name="Pre" id="Pre" required>
-				<br>
-				
-			</form>
+				</form>
 			</div>
-			<div class="modal-footer"> 
-			<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar"></input> 
+		<div class="modal-footer"> 
+			<input type="button" class="btn btn-danger" id="cancelar" data-dismiss="modal" value="Cancelar"></input> 
 			<input  type="button" class="btn btn-primary" id="aceptar" value="Aceptar">
-			</div >
-		</div > 
-	</div > 
-</div >
+		</div>
+</div > 
 <script type="text/javascript">
 get_all_cat();
+$(".modal").modal();
+$("#container_modal").modal('open');
+
+$("#aceptar").click(function(){
+		$("#form_entradas").submit();
+		$("#container_modal").modal('close');
+	});
+	$("#cancelar").click(function(){
+		$("#container_modal").modal('close');
+	});
 
 $("#Cat").change(function(){
 	var id_categoria_a=$(this).val();
 	get_all_ali(id_categoria_a);
 });
-
-$("#modal_entradas").modal();
-	$("#aceptar").click(function(){
-		$("#form_entradas").submit();
-	});
 	
-	
-
 	
 	$("#form_entradas").validate({
 		errorClass: "invalid",
@@ -104,7 +100,6 @@ $("#modal_entradas").modal();
 			$.post("core/Existencias/controller_existencias.php",$("#form_entradas").serialize()
 				,function(){
 					get_all();
-					$("#modal_entradas").modal("hide");
 				});
 		}
 	});	
@@ -119,6 +114,7 @@ $("#modal_entradas").modal();
 				html+="<option value='"+dato["id_alimento"]+"'>"+dato["descripcion"]+"</option>";
 			}
 			$("#Ali").html(html);
+			$("#Ali").material_select();
 		});
 	}
 
@@ -132,9 +128,37 @@ $("#modal_entradas").modal();
 					cod_html+="<option value='"+dat["id_categoria_a"]+"'>"+dat["descripcion"]+"</option>";
 				}
 				$("#Cat").html(cod_html);
+				$("#Cat").material_select();
 
 			});
 		}
 
 
 </script>
+<style type="text/css">
+	input-field.select-dropdown
+	{
+		color: black;
+		overflow-y: visible;
+		border-radius: 3px;
+		margin-top: 4em;
+	}
+	input-field.dropdown-content{
+		color: black;
+		overflow-y: visible;
+		border-radius: 3px;
+		margin-top: 4em;
+	}
+	#Cat-error{
+		position: relative;
+		color: red
+	}
+	#Can-error{
+		position: relative;
+		color: red
+	}
+	#Pre-error{
+		position: relative;
+		color: red
+	}
+</style>
