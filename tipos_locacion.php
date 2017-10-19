@@ -25,6 +25,7 @@ if(!isset($_SESSION['id_usuario']))
 
 			$("#content_table").on("click","a.btn_eliminar",function(){
 				$("#Modal_confirm_deleteTl").modal();
+				$("#Modal_confirm_deleteTl").modal("open");
 				$("#btn_confirm_deleteTl").data("id",$(this).data("id"));
 			});
 			$("#content_table").on("click","a.btn_modificar",function(){
@@ -44,7 +45,7 @@ if(!isset($_SESSION['id_usuario']))
 				for (var i=0;i<datos.length;i++) 
 				{
 					var info=datos[i];
-					cod_html+="<tr><td>"+info['descripcion']+"</td><td><a class='btn btn-danger btn_eliminar' data-id='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-minus'></span></a></td><td><a class='btn btn-warning btn_modificar' data-id='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-pencil'></span></a></td></tr>";
+					cod_html+="<tr><td>"+info['descripcion']+"</td><td class='centrado'><a class='waves-effect btn-flat btn_eliminar' data-id='"+info["id_tipo_l"]+"' style='color: #ef5350'><span class='material-icons' style='margin-top: 0.2em'>cancel</span></a></td><td class='centrado'><a class='waves-effect btn-flat btn_modificar' data-id='"+info["id_tipo_l"]+"' style='color: #1976d2'><span class='material-icons' style='margin-top: 0.2em'>edit</span></a></td></tr>";
 					//se insertan los datos a la tabla
 				}
 				$("#content_table").html(cod_html);
@@ -55,7 +56,7 @@ if(!isset($_SESSION['id_usuario']))
 				$.post("core/Tipos_locaciones/controller_t_l.php",{action:'delete',id_tipo_l:id_tipo_l},
 					function(){
 						get_all();
-						$("#Modal_confirm_deleteTl").modal("hide");
+						$("#Modal_confirm_deleteTl").modal("close");
 					});
 			});
 		}
@@ -72,16 +73,16 @@ if(!isset($_SESSION['id_usuario']))
 	<section class="container">
 		
 		<div class="panel panel-default">
-			<div class="panel-heading text-center"><a class="btn btn-success" id="add_t_l" ><span class="glyphicon glyphicon-plus"></span></a>
-			
-				Tipos de Locaciones
+			<div class="text-center">
+				<a class="waves-effect waves-teal btn green modal-trigger" style="width: 2em;height: 2em;padding: 0.2em;float: right;" href="#container_modal"  id="add_t_l"><span class="material-icons">add</span></a>
+				<h4>Tipos de Locaciones</h4>
 			</div>
-			<div class="panel-body table-responsive">
-				 <table class="table">
+			<div>
+				 <table class="table responsive-table bordered">
 				 	<tr>
 				 		<th>Descripcion</th>
-				 		<th>Eliminar</th>
-				 		<th>Editar</th>
+				 		<th class="centrado">Eliminar</th>
+				 		<th class="centrado">Editar</th>
 				 	</tr>
 				 	<tbody id="content_table"></tbody>
 				 	
@@ -90,32 +91,32 @@ if(!isset($_SESSION['id_usuario']))
 		</div>
 
 	</section>
-	<aside id="container_modal">
-	</aside>
+	<div id="container_modal" class="modal">
+	</div>
 
-	<div class="modal fade" id="Modal_confirm_deleteTl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-	<div class="modal-dialog"> 
+	<div class="modal" id="Modal_confirm_deleteTl" tabindex="-1"> 
 		<div class="modal-content"> 
-
-
-			<div class="modal-header"> 
-				<button type="button" class="close" data-dismiss="modal"> 
-					<span aria-hidden="true">&times;</span> 
-					<span class="sr-only">Close</span> 
-				</button> 
-				<h4 class="modal-title" id="myModalLabel">
-				</h4> <!-- se especifica el titulo del modal para diferenciarlos-->
-			</div >
-			<div class="modal-body">
-				 Seguro que desea eliminar el registro		
-			</div>
-			<div class="modal-footer"> 
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button> 
-			<input  type="button" class="btn btn-primary" id="btn_confirm_deleteTl" value="Aceptar">
-
-		</div > 
+		<div class="modal-body">
+			 ¿Seguro que desea eliminar el registro?		
+		</div>
+		<div class="modal-footer"> 
+		<button type="button" class="btn modal-action modal-close red">Cancelar</button> 
+		<input  type="button" class="btn blue" id="btn_confirm_deleteTl" value="Aceptar">
 	</div > 
-</div >
 
 </body>
+<style type="text/css">
+	table tr:hover
+	{
+		background-color: lightgray;
+	}
+	table .centrado
+	{
+		text-align: center;
+	}
+	table tr td
+	{
+		padding: 0em;
+	}
+</style>
 </html>

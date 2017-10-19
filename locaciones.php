@@ -65,6 +65,7 @@ if(!isset($_SESSION['id_usuario']))
 			{
 				var datos=JSON.parse(res);
 				var cod_html="";
+				var cod_cont="";
 				for (var i=0;i<datos.length;i++) 
 				{
 					var info=datos[i];
@@ -74,10 +75,17 @@ if(!isset($_SESSION['id_usuario']))
 						else{
 							clase="fueraser";
 						}
-					    cod_html+="<center><div id='div_loc' class='"+clase+" col-md-4' style='margin-left:10%;'><br/><label>Numero de locacion:"+info["numero"]+"<br>Locacion: "+info["descripcion"]+"<center></label><div id='btn_div'>  <a href='#!' style='padding: 18px 27px;' class='btn btn-warning btn_modificar' data-id='"+info["id_locacion"]+"' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a> <a href='#!' style='padding: 18px 27px' class='btn btn-danger btn_eliminar' data-id='"+info["id_locacion"]+"' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-minus' aria-hidden='true'></span></a></div></center></div></center>";
-						
+
+					    cod_cont="<div id='content_tab"+info["id_tipo_l"]+"'class='col s12 card-panel grey lighten-2' style='padding: 1em;'><div class='container'><h5>Sección de "+info["descripcion"]+"</h5><a class='waves-effect waves-teal btn green' style='width: 2em;height: 2em;padding: 0.2em;float: right;' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='material-icons'>add</span></a> </div></div>";
+
+					    cod_html+="<center><div id='div_loc' class='"+clase+" col s3 m3 l3'><br/><label>Numero de locacion:"+info["numero"]+"<br>Locacion: "+info["descripcion"]+"<center></label><div id='btn_div'>  <a href='#!' style='padding: 18px 27px;' class='btn btn-warning btn_modificar' data-id='"+info["id_locacion"]+"' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a> <a href='#!' style='padding: 18px 27px' class='btn btn-danger btn_eliminar' data-id='"+info["id_locacion"]+"' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='glyphicon glyphicon-minus' aria-hidden='true'></span></a></div></center></div></center>";
+
+							
+							console.log(cod_cont);
+							$("#cont_info_nav_tabs").html(cod_cont);
+							cod_cont="";
 				}
-				$("#content_tab"+id_tipo_l).html(cod_html);		
+				$("#content_tab"+id_tipo_l).append("<hr style='border: solid 0.5px grey'><div class='row'></div>"+cod_html);		
 			});
 		}
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,22 +96,14 @@ if(!isset($_SESSION['id_usuario']))
 				{
 					var datos=JSON.parse(res);
 					var cod_title="";
-					var cod_cont="";
 					for (var i=0;i<datos.length;i++)
 					{
 						var info=datos[i];
-						cod_title+="<li class='tab col s3'><a data-id='"+info["id_tipo_l"]+"' href='#content_tab"+info["id_tipo_l"]+"'>"+info["descripcion"]+"</a><li>";
+						cod_title+="<li class='tab col'><a data-id='"+info["id_tipo_l"]+"' href='#content_tab"+info["id_tipo_l"]+"'>"+info["descripcion"]+"</a><li>";
 
-						cod_cont+="<div id='content_tab"+info["id_tipo_l"]+"'class='col s12'><div class='card-panel'><h5>Sección de "+info["descripcion"]+"</h5><a class='waves-effect waves-teal btn green' style='width: 2em;height: 2em;padding: 0.2em;float: right;' data-id_tipo_l='"+info["id_tipo_l"]+"'><span class='material-icons'>add</span></a> </div></div>";
-						console.log(cod_cont);
-						$("#cont_info_nav_tabs").append(cod_cont);
-						cod_cont="";
+						//el contenido del tipo de locación se pasó a la accion cuadno se haga clic en uno de los tabs
 					}
-					$("#cont_nav_tabs").html(cod_title);
-					
-
-				$('#cont_nav_tabs.tabs a:first').tab('show');
-				get_all($('#cont_nav_tabs.tabs a:first').data("id"));	
+					$("#cont_nav_tabs").html(cod_title);	
 				});
 		}
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,13 +119,13 @@ if(!isset($_SESSION['id_usuario']))
 
 	<section class="container">
 		<div class="row">
-			<div class="col s12">
+			<div class="col s12  card-panel">
 				<ul id="cont_nav_tabs" class="tabs">
 					
 				</ul>
 			</div>
 			<div class="tab-content" id="cont_info_nav_tabs">
-				
+				<h5 align="center">Seleccione un tipo de locación</h5>
 			</div>	
 		</div>
 	</section>
@@ -171,4 +171,14 @@ if(!isset($_SESSION['id_usuario']))
   	});
        
 </script>
-</html>
+<style type="text/css">
+	#div_loc
+	{
+		background-image: url('img/mesa_demo.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 90%;
+    	padding: 2em;
+	}
+</style>
+</html3
